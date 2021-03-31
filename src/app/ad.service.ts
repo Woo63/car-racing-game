@@ -7,6 +7,6 @@ import {ObstacleComponent} from './obstacle/obstacle.component';
 @Injectable()
 export class AdService {
   getAds(race, top) {
-    return new AdItem(ObstacleComponent, {raceAddedCar:race, top:top})
+    return new AdItem(ObstacleComponent, {left:race, top:top})
   }
 }

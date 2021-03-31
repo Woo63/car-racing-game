@@ -1,15 +1,13 @@
 <h1>Racing game</h1>
-<div tabindex="0" (keydown)="startGame($event)"  autofocus>
-  <div *ngIf="hidden; else unset" class="app">
-    <p class="startGame">Press key to start</p>
-  </div>
-  <ng-template #unset>
-    <div class="app" >
-      <app-game-screen class="screen" [value]="value" #count></app-game-screen>
-      <div class="info">
-        <app-score class="clock" [score]="count.count"></app-score>
-        <app-speed class="speed" [speed]="count.speedNumber"></app-speed>
-      </div>
-    </div>
-  </ng-template>
+<div *ngIf="hidden; else unset" class="app">
+  <p class="startGame">Press key to start</p>
 </div>
+<ng-template #unset>
+  <div class="app">
+    <app-game-screen class="screen" #count></app-game-screen>
+    <div class="info">
+      <app-score class="score" [score]="count.score"></app-score>
+      <app-speed class="speed" [speed]="count.speedNumber"></app-speed>
+    </div>
+  </div>
+</ng-template>

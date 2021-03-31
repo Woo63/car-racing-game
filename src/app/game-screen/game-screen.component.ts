@@ -1,95 +1,49 @@
-import {Component, Input, OnInit, ViewChild, ComponentFactoryResolver, OnDestroy} from '@angular/core';
+import {Component, OnInit, ViewChild, HostListener} from '@angular/core';
 import {AdDirective} from '../ad.directive';
-import {AdComponent} from '../ad.component';
-import {AdService} from '../ad.service';
-
-enum CarRace {
-  '5rem',
-  '15rem'
-}
+import {GameService} from "../game.service";
 
 @Component({
   selector: 'app-game-screen',
-  templateUrl: './game-screen.component.html',
-  styleUrls: ['./game-screen.component.scss']
+  template: `
+    <div class="board" style="overflow: hidden">
+      <app-main-car class="main" [style.left]="playerPosition.toString()+'rem'"></app-main-car>
+      <ng-template adHost></ng-template>
+    </div>
+  `,
+  providers: [GameService]
 })
 
-export class GameScreenComponent implements OnInit, OnDestroy{
-  @Input() value:number;
-  count:number=0;
-  carPos:number;
-  startTop:number=-22;
-  topPosition:number;
-  bottomPosition:number=32;
-  carWeight:number=6;
-  carHeight:number=10;
-  speed:number=20;
-  speedNumber:number=1;
-  leftPosition:number[]=[5,15]
+export class GameScreenComponent implements OnInit {
+  playerPosition: number = 10;
+  score: number = 0;
+  speedNumber: number = 1;
 
   @ViewChild(AdDirective, {static: true}) adHost: AdDirective;
-  interval: any;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private adService: AdService) { }
+  constructor(private gameService: GameService) {
+  }
 
   ngOnInit() {
-    this.loadComponent();
-    this.getAds();
+    this.gameService.startGame(this.playerPosition, this.adHost);
+    this.gameService.speedNumber.subscribe(value => {this.speedNumber = value});
+    this.gameService.score.subscribe(value => {this.score = value})
   }
 
-  ngOnDestroy() {
-    clearInterval(this.interval);
-  }
-
-  creatComponent(carPos, top){
-    const adItem = this.adService.getAds(carPos, top);
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
-    const viewContainerRef = this.adHost.viewContainerRef;
-    viewContainerRef.clear();
-    const componentRef = viewContainerRef.createComponent<AdComponent>(componentFactory);
-    componentRef.instance.data = adItem.data;
-  }
-
-  loadComponent() {
-    this.carPos = Math.floor(Math.random() * Math.floor(2));
-    if (((this.count+1) % 3 == 0) && (this.speed>4)){
-    this.speed-=2;
-    this.speedNumber++;
+  @HostListener('window:keydown', ['$event'])
+  moveRect(e: KeyboardEvent): void {
+    switch (e.key) {
+      case "ArrowLeft":
+        if (this.playerPosition > 2) {
+          this.gameService.movePlayer('left');
+          this.playerPosition -= 2;
+        }
+        break;
+      case "ArrowRight":
+        if (this.playerPosition < 18) {
+          this.playerPosition += 2;
+          this.gameService.movePlayer('right')
+        }
+        break;
     }
-    this.creatComponent(CarRace[this.carPos], this.startTop)
-    this.topPosition=this.startTop;
-    setTimeout(()=>{
-      this.count++}
-      , ((this.bottomPosition-this.topPosition)/0.3)*this.speed);
-  }
-  moveComponent(){
-    this.topPosition+=0.3;
-    this.creatComponent(CarRace[this.carPos], this.topPosition)
-    this.detectedCrash();
-    if (this.topPosition>=this.bottomPosition){
-      clearInterval(this.interval)
-      this.loadComponent()
-      this.getAds()
-    }
-  }
-  detectedCrash(){
-    if ((this.topPosition+this.carHeight>=18)&&(
-      ((this.leftPosition[this.carPos]>=this.value)&&(this.leftPosition[this.carPos]<=this.value+this.carWeight)) ||
-      ((this.leftPosition[this.carPos]+this.carWeight>=this.value)&&(this.leftPosition[this.carPos]+this.carWeight<=this.value+this.carWeight))
-  )){
-      this.count--;
-      clearInterval(this.interval);
-      if (Number(window.localStorage.getItem('highScore'))<this.count*10){
-        window.localStorage.setItem('highScore', (this.count*10).toString())
-      }
-      alert('game over');
-      window.location.reload();
-    }
-  }
-
-  getAds() {
-    this.interval = setInterval(() => {
-      this.moveComponent();
-    }, this.speed);
   }
 }

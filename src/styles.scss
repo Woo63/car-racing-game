@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.app{
+  background-color: darkgrey;
+}
+p{
+  margin: 1rem 0;
+  font-size: 1.5em;
+}
+
+h1{
+  font-family: 'Acme', sans-serif;
+  font-size: 5rem;
+  text-align: center;
+}
+h2{
+  font-family: 'Acme', sans-serif;
+}
+.car{
+  width: 6rem;
+}
+img{
+  width: 6rem;
+  height: auto;
+}
+.green{
+  position: relative;
+}

@@ -1,0 +1,30 @@
+.app{
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  width: 35rem;
+  height: 40rem;
+  border: darkslategrey solid 0.5rem;
+}
+.screen{
+  width: 25rem;
+  border-right: darkslategrey solid 0.1rem;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+}
+.clock, .speed{
+  height: 15rem;
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.startGame{
+  align-items: center;
+  margin: auto;
+  font-family: 'Acme', sans-serif;
+  font-size: 4rem;
+}
+

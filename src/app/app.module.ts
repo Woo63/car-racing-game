@@ -7,8 +7,8 @@ import { ObstacleComponent } from './obstacle/obstacle.component';
 import { ScoreComponent } from './score/score.component';
 import { GameScreenComponent } from './game-screen/game-screen.component';
 import { SpeedComponent } from './speed/speed.component';
-import {AdDirective} from './ad.directive';
-import {AdService} from './ad.service';
+import {AdDirective} from './ad/ad.directive';
+import {AdService} from './ad/ad.service';
 import { MainCarComponent } from './main-car/main-car.component';
 
 

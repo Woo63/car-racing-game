@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, HostListener} from '@angular/core';
-import {AdDirective} from '../ad.directive';
+import {AdDirective} from '../ad/ad.directive';
 import {GameService} from "../game.service";
 
 @Component({

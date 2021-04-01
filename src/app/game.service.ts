@@ -1,7 +1,7 @@
 import {ComponentFactoryResolver, Injectable, Input, ViewChild} from '@angular/core';
-import {AdDirective} from "./ad.directive";
-import {AdService} from "./ad.service";
-import {AdComponent} from "./ad.component";
+import {AdDirective} from "./ad/ad.directive";
+import {AdService} from "./ad/ad.service";
+import {AdComponent} from "./ad/ad.component";
 import {BehaviorSubject} from "rxjs";
 
 import * as CONF from "./config"

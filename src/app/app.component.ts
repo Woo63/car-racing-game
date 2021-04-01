@@ -1,4 +1,4 @@
-import { Component , HostListener } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +6,12 @@ import { Component , HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  hidden:boolean=true;
+  hidden: boolean = true;
+
   @HostListener('window:keydown', ['$event'])
-  startGame(e: KeyboardEvent) : void{
-    if (e.key){
-      this.hidden=false;
+  startGame(e: KeyboardEvent): void {
+    if (e.key) {
+      this.hidden = false;
     }
   }
 }

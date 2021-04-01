@@ -1,4 +1,4 @@
-.app{
+.app {
   display: flex;
   margin-right: auto;
   margin-left: auto;
@@ -6,22 +6,26 @@
   height: 40rem;
   border: darkslategrey solid 0.5rem;
 }
-.screen{
+
+.screen {
   width: 25rem;
   border-right: darkslategrey solid 0.1rem;
 }
-.info{
+
+.info {
   display: flex;
   flex-direction: column;
 }
-.score, .speed{
+
+.score, .speed {
   height: 15rem;
   width: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.startGame{
+
+.startGame {
   align-items: center;
   margin: auto;
   font-family: 'Acme', sans-serif;

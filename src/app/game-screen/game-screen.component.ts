@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {AdDirective} from '../ad/ad.directive';
 import {GameService} from "../game.service";
 
@@ -25,8 +25,12 @@ export class GameScreenComponent implements OnInit {
 
   ngOnInit() {
     this.gameService.startGame(this.playerPosition, this.adHost);
-    this.gameService.speedNumber.subscribe(value => {this.speedNumber = value});
-    this.gameService.score.subscribe(value => {this.score = value})
+    this.gameService.speedNumber.subscribe(value => {
+      this.speedNumber = value
+    });
+    this.gameService.score.subscribe(value => {
+      this.score = value
+    })
   }
 
   @HostListener('window:keydown', ['$event'])

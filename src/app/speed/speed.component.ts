@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-speed',
-  template:`
+  template: `
     <div class="speedWindow">
       <h2>SPEED</h2>
       <p>{{speed}}</p>

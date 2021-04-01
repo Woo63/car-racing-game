@@ -1,4 +1,4 @@
-import {ComponentFactoryResolver, Injectable, Input, ViewChild} from '@angular/core';
+import {ComponentFactoryResolver, Injectable} from '@angular/core';
 import {AdDirective} from "./ad/ad.directive";
 import {AdService} from "./ad/ad.service";
 import {AdComponent} from "./ad/ad.component";

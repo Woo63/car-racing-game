@@ -58,12 +58,6 @@ export class GameService {
     }
   }
 
-  movePlayer(key: string) {
-    if (key == 'left') {
-      this.playerPositionLeft -= 2;
-    } else this.playerPositionLeft += 2;
-  }
-
   detectedCrash() {
     const carLeftOffset = CONF.leftCarPositions[this.randomCarLeftPosition]
     const carRightOffset = carLeftOffset + CONF.carWidth
